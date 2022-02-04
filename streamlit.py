@@ -1,6 +1,7 @@
 from turtle import width
 import streamlit as st
 from PIL import Image
+from itertools import cycle
 import os
 
 st.write(
@@ -10,16 +11,13 @@ st.write(
     """
 )
 
-directory = 'C:\\Users\\Joyce\\Documents\\Clustering images\\Output\\'
-clusters = []
-images = []
+directory = 'Output\\'
 
 i = 1
 for folder in os.listdir(directory):
-    clusters.append(folder)
     st.header('Cluster ' + str(i))
+    cols = cycle(st.columns(4))
     for filename in os.listdir(directory+folder):
-        images.append(filename)
         image = Image.open(directory+folder+'\\'+filename)
-        st.image(image, caption=filename, width=500)
+        next(cols).image(image, caption=filename, width=150)
     i+=1

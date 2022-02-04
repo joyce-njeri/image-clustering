@@ -1,15 +1,11 @@
-# Install
-# 1. Pillow
-# 2. selenium - automate browser
-# 3. requests
-from selenium import webdriver # Chrome webdriver
+from selenium import webdriver # automate browser
 from selenium.webdriver.common.by import By
 import requests
 import io
 from PIL import Image
 import time
 
-# webdriver local path
+# chrome webdriver local path
 PATH = "C:\\Users\\Joyce\\Documents\\Clustering images\\chromedriver.exe"
 wd = webdriver.Chrome(PATH)
 
@@ -19,7 +15,7 @@ def get_images_from_google(wd, delay, max_images):
 		time.sleep(delay)
 
     # link to google product images
-	url = "https://www.jumia.co.ke/groceries/"
+	url = "https://www.google.com/search?q=product+images&rlz=1C1CHBF_enRW948RW948&sxsrf=APq-WBtYR3GxbRE5o3CkOAurJJJpYltrhA:1643962525926&source=lnms&tbm=isch&sa=X&ved=2ahUKEwjTw4bTzeX1AhVOt6QKHXybBL0Q_AUoAXoECAEQAw&biw=1536&bih=754&dpr=1.25"
 	wd.get(url)
 
 	image_urls = set()
@@ -29,7 +25,7 @@ def get_images_from_google(wd, delay, max_images):
 		scroll_down(wd)
 
         # find all elements with classname ...
-		thumbnails = wd.find_elements(By.CLASS_NAME, "-rad4")
+		thumbnails = wd.find_elements(By.CLASS_NAME, "Q4LuWd")
 
 		for img in thumbnails[len(image_urls) + skips:max_images]:
 			try:
@@ -39,7 +35,7 @@ def get_images_from_google(wd, delay, max_images):
 				continue
             
             # find specific image with classname ...
-			images = wd.find_elements(By.CLASS_NAME, "img")
+			images = wd.find_elements(By.CLASS_NAME, "n3VNCb")
 			for image in images:
 				if image.get_attribute('src') in image_urls:
 					max_images += 1
