@@ -10,13 +10,13 @@ st.write(
     """
 )
 
-directory = 'Output\\'
+directory = "Output"
 
 i = 1
 for folder in os.listdir(directory):
     st.header('Cluster ' + str(i))
     cols = cycle(st.columns(4))
-    for filename in os.listdir(directory+folder):
-        image = Image.open(directory+folder+'\\'+filename)
+    for filename in os.listdir(os.path.join(directory, folder)):
+        image = Image.open(os.path.join(directory, folder, filename))
         next(cols).image(image, caption=filename, width=150)
     i+=1
