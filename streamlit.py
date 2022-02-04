@@ -20,3 +20,6 @@ for folder in os.listdir(directory):
         image = Image.open(os.path.join(directory, folder, filename))
         next(cols).image(image, caption=filename, width=150)
     i+=1
+
+
+    # 
