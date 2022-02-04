@@ -14,8 +14,6 @@ directory = 'C:\\Users\\Joyce\\Documents\\Clustering images\\Output\\'
 clusters = []
 images = []
 
-col1, col2, col3 = st.columns(3)
-
 i = 1
 for folder in os.listdir(directory):
     clusters.append(folder)
@@ -23,5 +21,5 @@ for folder in os.listdir(directory):
     for filename in os.listdir(directory+folder):
         images.append(filename)
         image = Image.open(directory+folder+'\\'+filename)
-        st.image(image, caption=filename, width=500, use_column_width=True)
+        st.image(image, caption=filename, width=500)
     i+=1
